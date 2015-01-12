@@ -27,6 +27,16 @@ func init() {
 		Methods("GET", "PUT", "DELETE")
 	r.HandleFunc("/{token:[a-f0-9]{32}}/_config/size", handlers.TokenHandler).
 		Methods("GET")
+	
+	
+	r.HandleFunc("/custom/q/{token:[a-f0-9]}", handlers.TokenHandler).
+		Methods("GET", "PUT")
+	r.HandleFunc("/custom/q/{token:[a-f0-9]}/", handlers.TokenHandler).
+		Methods("GET", "PUT")
+	r.HandleFunc("/custom/q/{token:[a-f0-9]}/{machine}", handlers.TokenHandler).
+		Methods("GET", "PUT", "DELETE")
+	r.HandleFunc("/custom/q/{token:[a-f0-9]}/_config/size", handlers.TokenHandler).
+		Methods("GET")	
 
 	logH := gorillaHandlers.LoggingHandler(os.Stdout, r)
 

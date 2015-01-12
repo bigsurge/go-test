@@ -51,7 +51,7 @@ func setupCustom(custom string) (string, error) {
 	}
 
 	client := etcd.NewClient(nil)
-	key := path.Join("_etcd", "registry", custom)
+	key := path.Join("_etcd", "registry",custom)
 	resp, err := client.CreateDir(key, 0)
 
 	if err != nil || resp.Node == nil || resp.Node.Key != "/"+key || resp.Node.Dir != true {
