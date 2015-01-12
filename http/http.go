@@ -6,7 +6,7 @@ import (
 
 	gorillaHandlers "github.com/gorilla/handlers"
 
-	"git.isspaas.com/beehive/etcd-discovery/handlers"
+	"github.com/bigsurge/go-test/handlers"
 	"github.com/gorilla/mux"
 )
 

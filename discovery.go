@@ -7,7 +7,7 @@ import (
 
 	"github.com/coreos/go-systemd/activation"
 
-	_ "git.isspaas.com/beehive/etcd-discovery/http"
+	_ "github.com/bigsurge/go-test/http"
 )
 
 var addr = flag.String("addr", "", "web service address")

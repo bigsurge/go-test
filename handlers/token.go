@@ -10,7 +10,7 @@ import (
 	"net/url"
 	"path"
 
-	"git.isspaas.com/beehive/etcd-discovery/pkg/lockstring"
+	"github.com/bigsurge/go-test/pkg/lockstring"
 )
 
 var (
