@@ -45,6 +45,27 @@ func setupToken(size int) (string, error) {
 	return token, nil
 }
 
+func setupCustom(custom string) (string, error) {
+	if custom == "" {
+		return "", errors.New("Couldn't generate a token")
+	}
+
+	client := etcd.NewClient(nil)
+	key := path.Join("_etcd", "registry", custom)
+	resp, err := client.CreateDir(key, 0)
+
+	if err != nil || resp.Node == nil || resp.Node.Key != "/"+key || resp.Node.Dir != true {
+		return "", errors.New(fmt.Sprintf("Couldn't setup state %v %v", resp, err))
+	}
+
+	resp, err = client.Create(path.Join(key, "_config", "size"), strconv.Itoa(3), 0)
+	if err != nil {
+		return "", errors.New(fmt.Sprintf("Couldn't setup state %v %v", resp, err))
+	}
+
+	return custom, nil
+}
+
 func deleteToken(token string) error {
 	client := etcd.NewClient(nil)
 
