@@ -16,7 +16,7 @@ func init() {
 	r.HandleFunc("/", handlers.HomeHandler)
 	r.HandleFunc("/new", handlers.NewTokenHandler)
 	r.HandleFunc("/health", handlers.HealthHandler)
-	r.HandleFunc("/custom/{token:[a-f0-9]}", handlers.CustomHandler)
+	r.HandleFunc("/test/{token:[a-f0-9]}", handlers.CustomHandler)
 
 	// Only allow exact tokens with GETs and PUTs
 	r.HandleFunc("/{token:[a-f0-9]{32}}", handlers.TokenHandler).
@@ -29,13 +29,13 @@ func init() {
 		Methods("GET")
 	
 	
-	r.HandleFunc("/custom/q/{token:[a-f0-9]}", handlers.TokenHandler).
+	r.HandleFunc("/test/q/{token:[a-f0-9]}", handlers.TokenHandler).
 		Methods("GET", "PUT")
-	r.HandleFunc("/custom/q/{token:[a-f0-9]}/", handlers.TokenHandler).
+	r.HandleFunc("/test/q/{token:[a-f0-9]}/", handlers.TokenHandler).
 		Methods("GET", "PUT")
-	r.HandleFunc("/custom/q/{token:[a-f0-9]}/{machine}", handlers.TokenHandler).
+	r.HandleFunc("/test/q/{token:[a-f0-9]}/{machine}", handlers.TokenHandler).
 		Methods("GET", "PUT", "DELETE")
-	r.HandleFunc("/custom/q/{token:[a-f0-9]}/_config/size", handlers.TokenHandler).
+	r.HandleFunc("/test/q/{token:[a-f0-9]}/_config/size", handlers.TokenHandler).
 		Methods("GET")	
 
 	logH := gorillaHandlers.LoggingHandler(os.Stdout, r)
